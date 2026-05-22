@@ -1,0 +1,223 @@
+{
+  "$schema": "https://raw.githubusercontent.com/hesreallyhim/claude-code-json-schema/main/schemas/marketplace.schema.json",
+  "name": "wp-agent-skills",
+  "description": "Re-exposes every WordPress/agent-skills skill as an individually toggleable Claude Code plugin.",
+  "owner": {
+    "name": "PLACEHOLDER_OWNER_NAME"
+  },
+  "metadata": {
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "wp-blueprint",
+      "description": "Use when creating, editing, or reviewing WordPress Playground blueprint JSON files. Triggers on mentions of blueprints, playground configuration, or requests to set up a WordPress demo environment.",
+      "category": "wordpress",
+      "tags": ["wordpress", "playground", "blueprints"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/blueprint",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-router",
+      "description": "Use when the user asks about WordPress codebases (plugins, themes, block themes, Gutenberg blocks, WP core checkouts) and you need to quickly classify the repo and route to the correct workflow/skill.",
+      "category": "wordpress",
+      "tags": ["wordpress", "routing", "classification"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wordpress-router",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-abilities-api",
+      "description": "Use when working with the WordPress Abilities API (wp_register_ability, wp_register_ability_category, /wp-json/wp-abilities/v1/*, @wordpress/abilities) including defining abilities, categories, meta, REST exposure, and permissions checks for clients.",
+      "category": "wordpress",
+      "tags": ["wordpress", "abilities-api", "rest"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-abilities-api",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-block-development",
+      "description": "Use when developing WordPress (Gutenberg) blocks: block.json metadata, register_block_type(_from_metadata), attributes/serialization, supports, dynamic rendering (render.php/render_callback), deprecations/migrations, viewScript vs viewScriptModule, and @wordpress/scripts/@wordpress/create-block build and test workflows.",
+      "category": "wordpress",
+      "tags": ["wordpress", "gutenberg", "blocks"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-block-development",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-block-themes",
+      "description": "Use when developing WordPress block themes: theme.json (global settings/styles), templates and template parts, patterns, style variations, and Site Editor troubleshooting (style hierarchy, overrides, caching).",
+      "category": "wordpress",
+      "tags": ["wordpress", "themes", "site-editor"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-block-themes",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-interactivity-api",
+      "description": "Use when building or debugging WordPress Interactivity API features (data-wp-* directives, @wordpress/interactivity store/state/actions, block viewScriptModule integration, wp_interactivity_*()) including performance, hydration, and directive behavior.",
+      "category": "wordpress",
+      "tags": ["wordpress", "interactivity-api", "directives"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-interactivity-api",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-performance",
+      "description": "Use when investigating or improving WordPress performance (backend-only agent): profiling and measurement (WP-CLI profile/doctor, Server-Timing, Query Monitor via REST headers), database/query optimization, autoloaded options, object caching, cron, HTTP API calls, and safe verification.",
+      "category": "wordpress",
+      "tags": ["wordpress", "performance", "profiling"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-performance",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-phpstan",
+      "description": "Use when configuring, running, or fixing PHPStan static analysis in WordPress projects (plugins/themes/sites): phpstan.neon setup, baselines, WordPress-specific typing, and handling third-party plugin classes.",
+      "category": "wordpress",
+      "tags": ["wordpress", "phpstan", "static-analysis"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-phpstan",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-playground",
+      "description": "Use for WordPress Playground workflows: fast disposable WP instances in the browser or locally via @wp-playground/cli (server, run-blueprint, build-snapshot), auto-mounting plugins/themes, switching WP/PHP versions, blueprints, and debugging (Xdebug).",
+      "category": "wordpress",
+      "tags": ["wordpress", "playground", "wasm"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-playground",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-plugin-development",
+      "description": "Use when developing WordPress plugins: architecture and hooks, activation/deactivation/uninstall, admin UI and Settings API, data storage, cron/tasks, security (nonces/capabilities/sanitization/escaping), and release packaging.",
+      "category": "wordpress",
+      "tags": ["wordpress", "plugins", "hooks"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-plugin-development",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-plugin-directory-guidelines",
+      "description": "Use when reviewing WordPress plugins for GPL compliance, checking license headers or compatibility, evaluating upsell/freemium/trialware patterns, validating plugin naming or trademark rules, checking plugin slugs, understanding why a plugin was rejected from WordPress.org, or answering any question about the 18 WordPress.org Plugin Directory guidelines.",
+      "category": "wordpress",
+      "tags": ["wordpress", "plugin-review", "gpl"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-plugin-directory-guidelines",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-project-triage",
+      "description": "Use when you need a deterministic inspection of a WordPress repository (plugin/theme/block theme/WP core/Gutenberg/full site) including tooling/tests/version hints, and a structured JSON report to guide workflows and guardrails.",
+      "category": "wordpress",
+      "tags": ["wordpress", "triage", "diagnostics"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-project-triage",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-rest-api",
+      "description": "Use when building, extending, or debugging WordPress REST API endpoints/routes: register_rest_route, WP_REST_Controller/controller classes, schema/argument validation, permission_callback/authentication, response shaping, register_rest_field/register_meta, or exposing CPTs/taxonomies via show_in_rest.",
+      "category": "wordpress",
+      "tags": ["wordpress", "rest-api", "endpoints"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-rest-api",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wp-wpcli-and-ops",
+      "description": "Use when working with WP-CLI (wp) for WordPress operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, and scripting/automation with wp-cli.yml.",
+      "category": "wordpress",
+      "tags": ["wordpress", "wp-cli", "devops"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wp-wpcli-and-ops",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    },
+    {
+      "name": "wpds",
+      "description": "Use when building UIs leveraging the WordPress Design System (WPDS) and its components, tokens, patterns, etc.",
+      "category": "wordpress",
+      "tags": ["wordpress", "design-system", "components"],
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/WordPress/agent-skills.git",
+        "path": "skills/wpds",
+        "ref": "trunk"
+      },
+      "strict": false,
+      "skills": ["./"]
+    }
+  ]
+}

@@ -1,152 +1,100 @@
-# Agent Skills for WordPress
+# wp-agent-skills
 
-**Teach AI coding assistants how to build WordPress the right way.**
+A Claude Code plugin marketplace that re-exposes every skill from [WordPress/agent-skills](https://github.com/WordPress/agent-skills) as an individually toggleable plugin. Instead of installing all 15 skills globally into `~/.claude/skills/`, this marketplace lets you pick exactly which WordPress skills each project needs via `/plugin install` and `/plugin disable`.
 
-Agent Skills are portable bundles of instructions, checklists, and scripts that help AI assistants (Claude, Copilot, Codex, Cursor, etc.) understand WordPress development patterns, avoid common mistakes, and follow best practices.
+## Install
 
-> **AI Authorship Disclosure:** These skills were generated using GPT-5.2 Codex (High Reasoning) from official Gutenberg and WordPress documentation, then reviewed and edited by WordPress contributors. We tested skills with AI assistants and iterated based on results. This is v1, and skills will improve as the community uses them and contributes fixes. See [docs/ai-authorship.md](docs/ai-authorship.md) for details. ([WordPress AI Guidelines](https://make.wordpress.org/ai/handbook/ai-guidelines/))
-
-## Why Agent Skills?
-
-AI coding assistants are powerful, but they often:
-- Generate outdated WordPress patterns (pre-Gutenberg, pre-block themes)
-- Miss critical security considerations in plugin development
-- Skip proper block deprecations, causing "Invalid block" errors
-- Ignore existing tooling in your repo
-
-Agent Skills solve this by giving AI assistants **expert-level WordPress knowledge** in a format they can actually use.
-
-## Available Skills
-
-| Skill | What it teaches |
-|-------|-----------------|
-| **wordpress-router** | Classifies WordPress repos and routes to the right workflow |
-| **wp-project-triage** | Detects project type, tooling, and versions automatically |
-| **wp-block-development** | Gutenberg blocks: `block.json`, attributes, rendering, deprecations |
-| **wp-block-themes** | Block themes: `theme.json`, templates, patterns, style variations |
-| **wp-plugin-development** | Plugin architecture, hooks, settings API, security |
-| **wp-rest-api** | REST API routes/endpoints, schema, auth, and response shaping |
-| **wp-interactivity-api** | Frontend interactivity with `data-wp-*` directives and stores |
-| **wp-abilities-api** | Capability-based permissions and REST API authentication |
-| **wp-wpcli-and-ops** | WP-CLI commands, automation, multisite, search-replace |
-| **wp-performance** | Profiling, caching, database optimization, Server-Timing |
-| **wp-phpstan** | PHPStan static analysis for WordPress projects (config, baselines, WP-specific typing) |
-| **wp-playground** | WordPress Playground for instant local environments |
-| **wpds** | WordPress Design System |
-| **wp-plugin-directory-guidelines** | WordPress Plugin Directory Guidelines |
-| **blueprint** | WordPress Playground Blueprints for declarative Playground environment setup |
-
-## Quick Start
-
-### Install globally for Claude Code
+Add the marketplace, then install only the plugins you need:
 
 ```bash
-# Clone agent-skills
-git clone https://github.com/WordPress/agent-skills.git
-cd agent-skills
-
-# Build the distribution
-node shared/scripts/skillpack-build.mjs --clean
-
-# Install all skills globally (available across all projects)
-node shared/scripts/skillpack-install.mjs --global
-
-# Or install specific skills only
-node shared/scripts/skillpack-install.mjs --global --skills=wp-playground,wp-block-development
+/plugin marketplace add <YOUR_GITHUB_USERNAME>/wp-agent-skills
 ```
-
-This installs skills to `~/.claude/skills/` where Claude Code will automatically discover them.
-
-### Install into your repo
 
 ```bash
-# Clone agent-skills
-git clone https://github.com/WordPress/agent-skills.git
-cd agent-skills
-
-# Build the distribution
-node shared/scripts/skillpack-build.mjs --clean
-
-# Install into your WordPress project
-node shared/scripts/skillpack-install.mjs --dest=../your-wp-project --targets=codex,vscode,claude,cursor
+/plugin install wp-block-development@wp-agent-skills
 ```
 
-This copies skills into:
-- `.codex/skills/` for OpenAI Codex
-- `.github/skills/` for VS Code / GitHub Copilot
-- `.claude/skills/` for Claude Code (project-level)
-- `.cursor/skills/` for Cursor (project-level)
+## Available Plugins
 
-### Install globally for Cursor
+| Plugin | Description |
+|--------|-------------|
+| `wp-blueprint` | Creating, editing, or reviewing WordPress Playground blueprint JSON files |
+| `wp-router` | Classify WordPress codebases and route to the correct workflow/skill |
+| `wp-abilities-api` | WordPress Abilities API — defining abilities, categories, REST exposure, permissions |
+| `wp-block-development` | Developing Gutenberg blocks — block.json, attributes, dynamic rendering, build tooling |
+| `wp-block-themes` | Block themes — theme.json, templates, template parts, patterns, style variations |
+| `wp-interactivity-api` | Interactivity API — data-wp-* directives, store/state/actions, hydration |
+| `wp-performance` | Backend performance profiling — Query Monitor, object caching, DB optimization |
+| `wp-phpstan` | PHPStan static analysis in WordPress projects — config, baselines, WP-specific typing |
+| `wp-playground` | WordPress Playground workflows — disposable instances, CLI, version switching, Xdebug |
+| `wp-plugin-development` | Plugin architecture — hooks, activation/deactivation, Settings API, security, packaging |
+| `wp-plugin-directory-guidelines` | WordPress.org Plugin Directory guidelines — GPL compliance, naming, trialware rules |
+| `wp-project-triage` | Deterministic repo inspection — detect project type, tooling, tests, version hints |
+| `wp-rest-api` | REST API endpoints — register_rest_route, controllers, schema, authentication |
+| `wp-wpcli-and-ops` | WP-CLI operations — search-replace, db management, cron, multisite, automation |
+| `wpds` | WordPress Design System — components, tokens, patterns |
+
+## Recommended Setups
+
+### Block Development
 
 ```bash
-node shared/scripts/skillpack-install.mjs --targets=cursor-global
+/plugin install wp-router@wp-agent-skills
+/plugin install wp-block-development@wp-agent-skills
+/plugin install wp-block-themes@wp-agent-skills
+/plugin install wp-interactivity-api@wp-agent-skills
+/plugin install wp-project-triage@wp-agent-skills
 ```
 
-This installs skills to `~/.cursor/skills/` where Cursor will discover them.
-
-### Available options
+### Plugin Development
 
 ```bash
-# List available skills
-node shared/scripts/skillpack-install.mjs --list
-
-# Dry run (preview without installing)
-node shared/scripts/skillpack-install.mjs --global --dry-run
-
-# Install specific skills to a project (e.g. Claude + Cursor)
-node shared/scripts/skillpack-install.mjs --dest=../my-repo --targets=claude,cursor --skills=wp-wpcli-and-ops
+/plugin install wp-router@wp-agent-skills
+/plugin install wp-plugin-development@wp-agent-skills
+/plugin install wp-rest-api@wp-agent-skills
+/plugin install wp-phpstan@wp-agent-skills
+/plugin install wp-plugin-directory-guidelines@wp-agent-skills
+/plugin install wp-project-triage@wp-agent-skills
 ```
 
-### Manual installation
-
-Copy any skill folder from `skills/` into your project's instructions directory for your AI assistant.
-
-## How It Works
-
-Each skill contains:
-
-```
-skills/wp-block-development/
-├── SKILL.md              # Main instructions (when to use, procedure, verification)
-├── references/           # Deep-dive docs on specific topics
-│   ├── block-json.md
-│   ├── deprecations.md
-│   └── ...
-└── scripts/              # Deterministic helpers (detection, validation)
-    └── list_blocks.mjs
-```
-
-When you ask your AI assistant to work on WordPress code, it reads these skills and follows the documented procedures rather than guessing.
-
-## Compatibility
-
-- **WordPress 6.9+** (PHP 7.2.24+)
-- Works with any AI assistant that supports project-level instructions
-
-## Contributing
-
-**We welcome contributions!** This project is a great way to share your WordPress expertise—you don't need to be a coding wizard. Most skills are written in Markdown, focusing on clear procedures and best practices.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
-
-Quick commands:
+### Ops / Maintenance
 
 ```bash
-# Scaffold a new skill
-node shared/scripts/scaffold-skill.mjs <skill-name> "<description>"
-
-# Validate skills
-node eval/harness/run.mjs
+/plugin install wp-router@wp-agent-skills
+/plugin install wp-wpcli-and-ops@wp-agent-skills
+/plugin install wp-performance@wp-agent-skills
+/plugin install wp-playground@wp-agent-skills
+/plugin install wp-project-triage@wp-agent-skills
 ```
 
-## Documentation
+## Updating
 
-- [Authoring Guide](docs/authoring-guide.md) - How to create and improve skills
-- [Principles](docs/principles.md) - Design philosophy
-- [Packaging](docs/packaging.md) - Build and distribution
-- [Compatibility Policy](docs/compatibility-policy.md) - Version targeting
+Pull the latest skill content from upstream:
 
-## License
+```bash
+/plugin marketplace update wp-agent-skills
+```
 
-GPL-2.0-or-later
+Since individual plugin entries omit a `version` field, they track the upstream `trunk` branch and auto-update when WordPress pushes new commits.
+
+To pin a specific upstream version, add a `sha` to that plugin's `source` in `marketplace.json`:
+
+```json
+{
+  "source": {
+    "source": "git-subdir",
+    "url": "https://github.com/WordPress/agent-skills.git",
+    "path": "skills/wp-block-development",
+    "ref": "trunk",
+    "sha": "abc1234..."
+  }
+}
+```
+
+Or change `ref` from `"trunk"` to a specific tag or branch name.
+
+## Credits
+
+All skill content is authored and maintained by the [WordPress/agent-skills](https://github.com/WordPress/agent-skills) project. This marketplace is a thin distribution layer — no upstream content is copied into this repo.
+
+Licensed under [GPL-2.0-or-later](https://www.gnu.org/licenses/gpl-2.0.html), consistent with the upstream project.
