@@ -7,7 +7,7 @@ A Claude Code plugin marketplace that re-exposes every skill from [WordPress/age
 Add the marketplace, then install only the plugins you need:
 
 ```bash
-/plugin marketplace add nutttaro/wp-agent-skills
+/plugin marketplace add nutttaro/wordpress-agent-skills
 ```
 
 ```bash
