@@ -3,7 +3,7 @@
   "name": "wp-agent-skills",
   "description": "Re-exposes every WordPress/agent-skills skill as an individually toggleable Claude Code plugin.",
   "owner": {
-    "name": "PLACEHOLDER_OWNER_NAME"
+    "name": "nutttaro"
   },
   "metadata": {
     "version": "1.0.0"
